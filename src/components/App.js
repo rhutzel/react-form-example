@@ -5,7 +5,7 @@ import BasicForm from './BasicForm';
 
 class App extends Component {
 	handleSubmit(payload) {
-		console.log(payload);
+		console.log('Submit: ' + JSON.stringify(payload));
 	}
 
 	render() {
