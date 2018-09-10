@@ -1,7 +1,7 @@
 import React from 'react';
 import {Field, reduxForm} from 'redux-form';
 // import Button from '@material-ui/core/Button';
-// import TextField from '@material-ui/core/TextField';
+import TextField from '@material-ui/core/TextField';
 
 /*
 class TextFormField extends React.Component {
@@ -18,25 +18,23 @@ class TextFormField extends React.Component {
 const form = props => {
 	const {handleSubmit} = props;
 
-	/*
-	const renderField = (field) => (
-		<div className="input-row">
-			<input {...field.input} type="text"/>
-			{field.meta.touched && field.meta.error &&
-			<span className="error">{field.meta.error}</span>}
-		</div>
+	const renderTextField = ({input, label, meta: {touched, error}, ...custom}) => (
+		<TextField
+			error={touched && error}
+			{...input}
+			{...custom}
+		/>
 	);
-	*/
 
 	return (
 		<form onSubmit={handleSubmit}>
 			<div className="field">
 				<label htmlFor="firstName">First Name</label>
-				<Field name="firstName" component="input" type="text" placeholder="First Name" />
+				<Field name="firstName" label="First Name" component={renderTextField} />
 			</div>
 			<div className="field">
 				<label htmlFor="lastName">Last Name</label>
-				<Field name="lastName" component="input" type="text" placeholder="Last Name" />
+				<Field name="lastName" label="Last Name" component={renderTextField} />
 			</div>
 			<button type="submit">Submit</button>
 		</form>
@@ -46,3 +44,4 @@ const form = props => {
 export default reduxForm({
 	form: 'basic',
 })(form);
+
